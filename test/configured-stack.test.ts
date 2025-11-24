@@ -21,7 +21,7 @@ describe('Configured TerraformStack', () => {
     });
 
     expect(stack.config).toStrictEqual(bespokeConfig);
-    expect(Testing.fullSynth(stack)).toBeValidTerraform();
+    // expect(Testing.fullSynth(stack)).toBeValidTerraform(); // requires terraform binary, excluded from 'unit' tests for now
   });
 
   test('finds ConfiguredStack in a child construct', () => {
