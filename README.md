@@ -37,7 +37,7 @@ class MyConstruct extends Construct {
      */
     const stack = ConfiguredStack.extOf<Config>(this);
 
-    const new Resource(this, 'Resource', {
+    new Resource(this, 'Resource', {
       foo: stack.config.foo,
     });
   }
