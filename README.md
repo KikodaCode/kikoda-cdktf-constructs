@@ -16,7 +16,54 @@ npm install @kikoda/cdktf-constructs --save-dev
 ```
 
 ## Usage
-<!-- TODO: add Usage & Examples -->
+#### Configured Stacks
+With the `ConfiguredStack` construct you can pass arbitrary environmental configuration to your CDK App. This is useful when you want to define and use a type-safe configuration object in your nested Constructs.
+
+```typescript
+import { App } from 'cdktf';
+import { ConfiguredStack, ConfiguredStackProps } from '@kikoda/cdktf-constructs';
+import { Construct } from 'constructs';
+
+interface Config {
+  foo: string;
+}
+
+class MyConstruct extends Construct {
+  constructor(scope: Construct, id: string) {
+    super(scope, id);
+
+    /*
+     * Get a config value in a child stack or construct
+     */
+    const stack = ConfiguredStack.extOf<Config>(this);
+
+    const new Resource(this, 'Resource', {
+      foo: stack.config.foo,
+    });
+  }
+}
+
+class MyStack<T> extends ConfiguredStack<T> {
+  constructor(scope: Construct, id: string, props: ConfiguredStackProps<T>) {
+    super(scope, id, props);
+
+    new MyConstruct(this, 'MyConstruct');
+  }
+}
+
+/*
+ * Use the ConfiguredStack in your App
+ */
+const app = new App();
+const stack = new MyStack<Config>(app, 'DevStack', {
+  stackName: 'dev',
+  config: {
+    foo: 'bar',
+  },
+});
+
+app.synth();
+```
 
 ## Opening Issues
 
