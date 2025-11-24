@@ -15,6 +15,7 @@ const project = new cdktf.ConstructLibraryCdktf({
   stability: 'experimental',
   license: 'Apache-2.0',
   cdktfVersion: '^0.21.0',
+  constructsVersion: '^10.4.2',
   projenrcTs: true,
   vscode: true,
   docgen: true,
