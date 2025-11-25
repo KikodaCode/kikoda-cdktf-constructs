@@ -1,1 +1,1 @@
-export * from './ConifguredStack';
+export * from './configured-stack';
