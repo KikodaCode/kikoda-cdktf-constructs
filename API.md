@@ -404,7 +404,6 @@ const configuredStackProps: ConfiguredStackProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@kikoda/cdktf-constructs.ConfiguredStackProps.property.config">config</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#@kikoda/cdktf-constructs.ConfiguredStackProps.property.stackName">stackName</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -415,16 +414,6 @@ public readonly config: any;
 ```
 
 - *Type:* any
-
----
-
-##### `stackName`<sup>Optional</sup> <a name="stackName" id="@kikoda/cdktf-constructs.ConfiguredStackProps.property.stackName"></a>
-
-```typescript
-public readonly stackName: string;
-```
-
-- *Type:* string
 
 ---
 

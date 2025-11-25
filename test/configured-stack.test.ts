@@ -16,7 +16,6 @@ describe('Configured TerraformStack', () => {
   `('assigns $bespokeConfig to config', bespokeConfig => {
     const app = Testing.app();
     const stack = new ConfiguredStack<typeof bespokeConfig>(app, 'test', {
-      stackName: 'test',
       config: bespokeConfig,
     });
 
@@ -52,7 +51,6 @@ describe('Configured TerraformStack', () => {
     }
 
     const stack = new MyStack(Testing.app(), 'MyStack', {
-      stackName: 'test',
       config: { foo: 'bar' },
     });
 
@@ -76,18 +74,11 @@ describe('Configured TerraformStack', () => {
 
   test('stackName is assigned correctly', () => {
     const app = Testing.app();
-    const stackName = 'my-stack-name';
-    const stack = new ConfiguredStack<any>(app, 'TestStack', {
-      stackName: stackName,
+    const id = 'MyConfiguredStack';
+    const defaultStack = new ConfiguredStack<any>(app, id, {
       config: {},
     });
 
-    expect(stack.stackName).toBe(stackName);
-
-    const defaultStack = new ConfiguredStack<any>(app, 'DefaultStack', {
-      config: {},
-    });
-
-    expect(defaultStack.stackName).toBe('DefaultStack');
+    expect(defaultStack.stackName).toBe(id);
   });
 });
