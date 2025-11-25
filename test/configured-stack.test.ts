@@ -73,4 +73,21 @@ describe('Configured TerraformStack', () => {
       ConfiguredStack.extOf<any>(orphan);
     }).toThrow();
   });
+
+  test('stackName is assigned correctly', () => {
+    const app = Testing.app();
+    const stackName = 'my-stack-name';
+    const stack = new ConfiguredStack<any>(app, 'TestStack', {
+      stackName: stackName,
+      config: {},
+    });
+
+    expect(stack.stackName).toBe(stackName);
+
+    const defaultStack = new ConfiguredStack<any>(app, 'DefaultStack', {
+      config: {},
+    });
+
+    expect(defaultStack.stackName).toBe('DefaultStack');
+  });
 });

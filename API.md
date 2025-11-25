@@ -418,7 +418,7 @@ public readonly config: any;
 
 ---
 
-##### `stackName`<sup>Required</sup> <a name="stackName" id="@kikoda/cdktf-constructs.ConfiguredStackProps.property.stackName"></a>
+##### `stackName`<sup>Optional</sup> <a name="stackName" id="@kikoda/cdktf-constructs.ConfiguredStackProps.property.stackName"></a>
 
 ```typescript
 public readonly stackName: string;

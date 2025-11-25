@@ -13,7 +13,7 @@ const CONFIGURED_STACK_CACHE = Symbol.for('@kikoda/cdktf-constructs.ConfiguredSt
  * @extends {StackProps}
  */
 export interface ConfiguredStackProps<T> {
-  readonly stackName: string;
+  readonly stackName?: string;
   readonly config: T;
 }
 
@@ -107,7 +107,7 @@ export class ConfiguredStack<TConfig> extends TerraformStack {
   constructor(scope: Construct, id: string, props: ConfiguredStackProps<TConfig>) {
     super(scope, id);
     Object.defineProperty(this, CONFIGURED_STACK_SYMBOL, { value: true });
-    this.stackName = props.stackName;
+    this.stackName = props.stackName || id;
     this.config = props.config;
   }
 }
