@@ -110,6 +110,10 @@
       "type": "build"
     },
     {
+      "name": "@microsoft/terraform-cdk-constructs",
+      "type": "bundled"
+    },
+    {
       "name": "@types/babel__traverse",
       "version": "7.18.2",
       "type": "override"
@@ -118,6 +122,10 @@
       "name": "@types/prettier",
       "version": "2.6.0",
       "type": "override"
+    },
+    {
+      "name": "@cdktf/provider-azurerm",
+      "type": "peer"
     },
     {
       "name": "cdktf",

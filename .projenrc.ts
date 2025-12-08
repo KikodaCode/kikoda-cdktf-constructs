@@ -29,8 +29,15 @@ const project = new cdktf.ConstructLibraryCdktf({
   },
 
   // deps: [] /* Runtime dependencies of this module. */,
-  // bundledDeps: [],
+  bundledDeps: [
+    '@microsoft/terraform-cdk-constructs',
+  ] /* Dependencies to be bundled into this module. */,
   devDeps: ['@kikoda/projen-templates'] /* Build dependencies for this module. */,
+  peerDeps: [
+    'cdktf',
+    'constructs',
+    '@cdktf/provider-azurerm',
+  ] /* Peer dependencies for this module. */,
   // gitignore: [],
   pullRequestTemplate: false,
   githubOptions: {
@@ -39,5 +46,9 @@ const project = new cdktf.ConstructLibraryCdktf({
 });
 
 new KikodaOpenSourceProject(project, { title: 'Kikoda CDKTF Constructs Library' });
+
+project.addScripts({
+  build: 'JSII_SUPPRESS_UPGRADE_PROMPT=true npx projen build',
+});
 
 project.synth();

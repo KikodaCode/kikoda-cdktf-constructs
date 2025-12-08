@@ -417,5 +417,66 @@ public readonly config: any;
 
 ---
 
+## Classes <a name="Classes" id="Classes"></a>
+
+### IpAddresses <a name="IpAddresses" id="@kikoda/cdktf-constructs.IpAddresses"></a>
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@kikoda/cdktf-constructs.IpAddresses.buildCapacity">buildCapacity</a></code> | Builds subnets from the CIDR block based on the provided subnet masks. |
+| <code><a href="#@kikoda/cdktf-constructs.IpAddresses.toString">toString</a></code> | *No description.* |
+
+---
+
+##### `buildCapacity` <a name="buildCapacity" id="@kikoda/cdktf-constructs.IpAddresses.buildCapacity"></a>
+
+```typescript
+public buildCapacity(subnetMasks: number[]): string[]
+```
+
+Builds subnets from the CIDR block based on the provided subnet masks.
+
+For each subnet mask in the input array, a subnet is created sequentially
+from the base CIDR block. The method ensures that each subnet starts at
+the correct boundary and does not overlap with previous subnets and stays
+within the original CIDR block.
+
+###### `subnetMasks`<sup>Required</sup> <a name="subnetMasks" id="@kikoda/cdktf-constructs.IpAddresses.buildCapacity.parameter.subnetMasks"></a>
+
+- *Type:* number[]
+
+---
+
+##### `toString` <a name="toString" id="@kikoda/cdktf-constructs.IpAddresses.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@kikoda/cdktf-constructs.IpAddresses.cidr">cidr</a></code> | *No description.* |
+
+---
+
+##### `cidr` <a name="cidr" id="@kikoda/cdktf-constructs.IpAddresses.cidr"></a>
+
+```typescript
+import { IpAddresses } from '@kikoda/cdktf-constructs'
+
+IpAddresses.cidr(cidrBlock: string)
+```
+
+###### `cidrBlock`<sup>Required</sup> <a name="cidrBlock" id="@kikoda/cdktf-constructs.IpAddresses.cidr.parameter.cidrBlock"></a>
+
+- *Type:* string
+
+---
+
+
 
 
