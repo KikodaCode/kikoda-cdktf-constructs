@@ -1,7 +1,11 @@
 import * as nat from '@cdktf/provider-azurerm/lib/nat-gateway';
 import * as natIP from '@cdktf/provider-azurerm/lib/nat-gateway-public-ip-association';
+import * as ip from '@cdktf/provider-azurerm/lib/public-ip';
+import * as rg from '@cdktf/provider-azurerm/lib/resource-group';
+import * as rms from '@cdktf/provider-azurerm/lib/subnet';
 import * as natAssoc from '@cdktf/provider-azurerm/lib/subnet-nat-gateway-association';
-import * as azcdk from '@microsoft/terraform-cdk-constructs';
+import * as network from '@cdktf/provider-azurerm/lib/virtual-network';
+import * as cdktf from 'cdktf';
 import { Construct } from 'constructs';
 import { IpAddresses } from '../ip-addresses';
 
@@ -17,19 +21,21 @@ export enum SubnetType {
   PRIVATE_ISOLATED = 'private_isolated',
 }
 
-export interface ISubnet extends azcdk.Subnet {
+export interface ISubnet {
+  id: string;
+  name: string;
   readonly subnetType: SubnetType;
   readonly searchName: string;
 }
 
-export abstract class SubnetBase extends azcdk.Subnet implements ISubnet {
+export abstract class SubnetBase extends rms.Subnet implements ISubnet {
   public abstract readonly subnetType: SubnetType;
   public abstract readonly searchName: string;
 }
 
-export interface SubnetProps extends azcdk.SubnetProps {
-  subnetType: SubnetType;
-  searchName: string;
+export interface SubnetProps extends rms.SubnetConfig {
+  readonly subnetType: SubnetType;
+  readonly searchName: string;
 }
 
 export class Subnet extends SubnetBase {
@@ -44,8 +50,12 @@ export class Subnet extends SubnetBase {
   }
 }
 
+export interface PrivateIsolatedSubnetProps extends rms.SubnetConfig {
+  readonly searchName: string;
+}
+
 export class PrivateIsolatedSubnet extends Subnet {
-  constructor(scope: Construct, id: string, props: Omit<SubnetProps, 'subnetType'>) {
+  constructor(scope: Construct, id: string, props: PrivateIsolatedSubnetProps) {
     super(scope, id, {
       ...props,
       subnetType: SubnetType.PRIVATE_ISOLATED,
@@ -53,8 +63,12 @@ export class PrivateIsolatedSubnet extends Subnet {
   }
 }
 
+export interface PrivateWithNatSubnetProps extends rms.SubnetConfig {
+  readonly searchName: string;
+}
+
 export class PrivateWithNatSubnet extends Subnet {
-  constructor(scope: Construct, id: string, props: Omit<SubnetProps, 'subnetType'>) {
+  constructor(scope: Construct, id: string, props: PrivateWithNatSubnetProps) {
     super(scope, id, {
       ...props,
       subnetType: SubnetType.PRIVATE_WITH_NAT,
@@ -62,25 +76,80 @@ export class PrivateWithNatSubnet extends Subnet {
   }
 }
 
-export interface SubnetConfig
-  extends Omit<
-    azcdk.SubnetProps,
-    'resourceGroupId' | 'virtualNetworkId' | 'virtualNetworkName' | 'addressPrefix'
-  > {
-  name: string;
+export interface SubnetConfig extends cdktf.TerraformMetaArguments {
+  readonly name: string;
 
   /**
    * The type of subnet to create
    *
    * @default SubnetType.PRIVATE_WITH_NAT
    */
-  subnetType?: SubnetType;
+  readonly subnetType?: SubnetType;
 
   /**
    * The CIDR mask for the subnet
    *
    */
-  cidrMask: number;
+  readonly cidrMask: number;
+
+  /**
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#default_outbound_access_enabled Subnet#default_outbound_access_enabled}
+   */
+  readonly defaultOutboundAccessEnabled?: boolean | cdktf.IResolvable;
+
+  /**
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#id Subnet#id}
+   *
+   * Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2.
+   * If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
+   */
+  readonly id?: string;
+
+  /**
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#private_endpoint_network_policies Subnet#private_endpoint_network_policies}
+   */
+  readonly privateEndpointNetworkPolicies?: string;
+
+  /**
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#private_link_service_network_policies_enabled Subnet#private_link_service_network_policies_enabled}
+   */
+  readonly privateLinkServiceNetworkPoliciesEnabled?: boolean | cdktf.IResolvable;
+
+  /**
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#service_endpoint_policy_ids Subnet#service_endpoint_policy_ids}
+   */
+  readonly serviceEndpointPolicyIds?: string[];
+
+  /**
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#service_endpoints Subnet#service_endpoints}
+   */
+  readonly serviceEndpoints?: string[];
+
+  /**
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#sharing_scope Subnet#sharing_scope}
+   */
+  readonly sharingScope?: string;
+
+  /**
+   * delegation block
+   *
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#delegation Subnet#delegation}
+   */
+  readonly delegation?: rms.SubnetDelegation[] | cdktf.IResolvable;
+
+  /**
+   * ip_address_pool block
+   *
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#ip_address_pool Subnet#ip_address_pool}
+   */
+  readonly ipAddressPool?: rms.SubnetIpAddressPool;
+
+  /**
+   * timeouts block
+   *
+   * Docs at Terraform Registry: {@link https://registry.terraform.io/providers/hashicorp/azurerm/4.55.0/docs/resources/subnet#timeouts Subnet#timeouts}
+   */
+  readonly timeouts?: rms.SubnetTimeouts;
 }
 
 export interface SubnetSelection {
@@ -89,14 +158,14 @@ export interface SubnetSelection {
    *
    * @default SubnetType.PRIVATE_WITH_NAT
    */
-  subnetType?: SubnetType;
+  readonly subnetType?: SubnetType;
 
   /**
    * The name of the subnet to select
    *
    * @default - All subnets of the given type are selected
    */
-  subnetName?: string;
+  readonly subnetName?: string;
 }
 
 export interface IVNet {
@@ -138,7 +207,7 @@ export abstract class VNetBase extends Construct implements IVNet {
   public abstract readonly vnetId: string;
   public abstract readonly vnetName: string;
   public abstract readonly cidrBlock: IpAddresses;
-  public abstract readonly resourceGroup: azcdk.ResourceGroup;
+  public abstract readonly resourceGroup: rg.ResourceGroup;
   public abstract readonly isolatedSubnets: ISubnet[];
   public abstract readonly privateSubnets: ISubnet[];
 
@@ -165,14 +234,14 @@ export abstract class VNetBase extends Construct implements IVNet {
 }
 
 export interface VNetProps {
-  resourceGroup: azcdk.ResourceGroup;
-  cidrBlock: IpAddresses;
+  readonly resourceGroup: rg.ResourceGroup;
+  readonly cidrBlock: IpAddresses;
   /**
    * Subnets to create within the Virtual Network
    *
    * @default - A single private subnet will be created
    */
-  subnetConfig?: SubnetConfig[];
+  readonly subnetConfig?: SubnetConfig[];
 }
 
 /**
@@ -185,7 +254,7 @@ export class VNet extends VNetBase {
   readonly vnetId: string;
   readonly vnetName: string;
   readonly cidrBlock: IpAddresses;
-  readonly resourceGroup: azcdk.ResourceGroup;
+  readonly resourceGroup: rg.ResourceGroup;
   readonly isolatedSubnets: ISubnet[] = [];
   readonly privateSubnets: ISubnet[] = [];
 
@@ -194,13 +263,11 @@ export class VNet extends VNetBase {
   constructor(scope: Construct, id: string, props: VNetProps) {
     super(scope, id);
 
-    const vnet = new azcdk.VirtualNetwork(this, 'VirtualNetwork', {
+    const vnet = new network.VirtualNetwork(this, 'VirtualNetwork', {
       name: `${props.resourceGroup.name}vnet`,
       location: props.resourceGroup.location,
-      resourceGroupId: props.resourceGroup.id,
-      addressSpace: {
-        addressPrefixes: [props.cidrBlock.toString()],
-      },
+      resourceGroupName: props.resourceGroup.name,
+      addressSpace: [props.cidrBlock.toString()],
     });
 
     this.vnetId = vnet.id;
@@ -238,10 +305,9 @@ export class VNet extends VNetBase {
               ...subnetProps,
               name: `${this.vnetName}${subnetDef.name}`,
               searchName: subnetDef.name,
-              resourceGroupId: this.resourceGroup.id,
-              virtualNetworkId: this.vnetId,
+              resourceGroupName: this.resourceGroup.name,
               virtualNetworkName: this.vnetName,
-              addressPrefix,
+              addressPrefixes: [addressPrefix],
             },
           );
 
@@ -256,10 +322,9 @@ export class VNet extends VNetBase {
               ...subnetProps,
               name: `${this.vnetName}${subnetDef.name}`,
               searchName: subnetDef.name,
-              resourceGroupId: this.resourceGroup.id,
-              virtualNetworkId: this.vnetId,
+              resourceGroupName: this.resourceGroup.name,
               virtualNetworkName: this.vnetName,
-              addressPrefix,
+              addressPrefixes: [addressPrefix],
             },
           );
 
@@ -281,12 +346,12 @@ export class VNet extends VNetBase {
 
   private getNatGateway(): nat.NatGateway {
     if (!this.natGateway) {
-      const natGWPublicIP = new azcdk.PublicIPAddress(this, 'NATGatewayPublicIP', {
+      const natGWPublicIP = new ip.PublicIp(this, 'NATGatewayPublicIP', {
         name: `${this.resourceGroup.name}natgwpip`,
         location: this.resourceGroup.location,
-        resourceGroupId: this.resourceGroup.id,
-        publicIPAllocationMethod: 'Static',
-        sku: { name: 'Standard' },
+        resourceGroupName: this.resourceGroup.name,
+        allocationMethod: 'Static',
+        sku: 'Standard',
       });
 
       this.natGateway = new nat.NatGateway(this, 'NATGateway', {

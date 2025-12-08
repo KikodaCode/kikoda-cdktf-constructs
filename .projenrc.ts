@@ -29,9 +29,7 @@ const project = new cdktf.ConstructLibraryCdktf({
   },
 
   // deps: [] /* Runtime dependencies of this module. */,
-  bundledDeps: [
-    '@microsoft/terraform-cdk-constructs',
-  ] /* Dependencies to be bundled into this module. */,
+  // bundledDeps: [] /* Dependencies to be bundled into this module. */,
   devDeps: ['@kikoda/projen-templates'] /* Build dependencies for this module. */,
   peerDeps: [
     'cdktf',
