@@ -37,7 +37,7 @@
     "@cdktf/provider-azurerm": "14.23.0",
     "@kikoda/projen-templates": "^0.2.461",
     "@types/jest": "^27",
-    "@types/node": "^16 <= 16.18.78",
+    "@types/node": "^18 <= 18.11.19",
     "@typescript-eslint/eslint-plugin": "^7",
     "@typescript-eslint/parser": "^7",
     "cdktf": "0.21.0",
@@ -79,6 +79,9 @@
     "scaffolding",
     "websites"
   ],
+  "engines": {
+    "node": ">= 20.9.0"
+  },
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "version": "0.0.0",
