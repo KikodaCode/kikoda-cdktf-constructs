@@ -51,6 +51,7 @@ The configuration based upon a generic type.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@kikoda/cdktf-constructs.ConfiguredStack.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@kikoda/cdktf-constructs.ConfiguredStack.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@kikoda/cdktf-constructs.ConfiguredStack.addDependency">addDependency</a></code> | *No description.* |
 | <code><a href="#@kikoda/cdktf-constructs.ConfiguredStack.addOverride">addOverride</a></code> | *No description.* |
 | <code><a href="#@kikoda/cdktf-constructs.ConfiguredStack.allProviders">allProviders</a></code> | *No description.* |
@@ -74,6 +75,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@kikoda/cdktf-constructs.ConfiguredStack.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@kikoda/cdktf-constructs.ConfiguredStack.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addDependency` <a name="addDependency" id="@kikoda/cdktf-constructs.ConfiguredStack.addDependency"></a>
 
@@ -426,6 +448,7 @@ new azure.PrivateIsolatedSubnet(scope: Construct, id: string, props: PrivateIsol
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@kikoda/cdktf-constructs.azure.PrivateIsolatedSubnet.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@kikoda/cdktf-constructs.azure.PrivateIsolatedSubnet.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.PrivateIsolatedSubnet.addOverride">addOverride</a></code> | *No description.* |
 | <code><a href="#@kikoda/cdktf-constructs.azure.PrivateIsolatedSubnet.overrideLogicalId">overrideLogicalId</a></code> | Overrides the auto-generated logical ID with a specific ID. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.PrivateIsolatedSubnet.resetOverrideLogicalId">resetOverrideLogicalId</a></code> | Resets a previously passed logical Id to use the auto-generated logical id again. |
@@ -472,6 +495,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@kikoda/cdktf-constructs.azure.PrivateIsolatedSubnet.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@kikoda/cdktf-constructs.azure.PrivateIsolatedSubnet.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addOverride` <a name="addOverride" id="@kikoda/cdktf-constructs.azure.PrivateIsolatedSubnet.addOverride"></a>
 
@@ -1522,6 +1566,7 @@ new azure.PrivateWithNatSubnet(scope: Construct, id: string, props: PrivateWithN
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@kikoda/cdktf-constructs.azure.PrivateWithNatSubnet.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@kikoda/cdktf-constructs.azure.PrivateWithNatSubnet.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.PrivateWithNatSubnet.addOverride">addOverride</a></code> | *No description.* |
 | <code><a href="#@kikoda/cdktf-constructs.azure.PrivateWithNatSubnet.overrideLogicalId">overrideLogicalId</a></code> | Overrides the auto-generated logical ID with a specific ID. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.PrivateWithNatSubnet.resetOverrideLogicalId">resetOverrideLogicalId</a></code> | Resets a previously passed logical Id to use the auto-generated logical id again. |
@@ -1568,6 +1613,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@kikoda/cdktf-constructs.azure.PrivateWithNatSubnet.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@kikoda/cdktf-constructs.azure.PrivateWithNatSubnet.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addOverride` <a name="addOverride" id="@kikoda/cdktf-constructs.azure.PrivateWithNatSubnet.addOverride"></a>
 
@@ -2618,6 +2684,7 @@ new azure.Subnet(scope: Construct, id: string, props: SubnetProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@kikoda/cdktf-constructs.azure.Subnet.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@kikoda/cdktf-constructs.azure.Subnet.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.Subnet.addOverride">addOverride</a></code> | *No description.* |
 | <code><a href="#@kikoda/cdktf-constructs.azure.Subnet.overrideLogicalId">overrideLogicalId</a></code> | Overrides the auto-generated logical ID with a specific ID. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.Subnet.resetOverrideLogicalId">resetOverrideLogicalId</a></code> | Resets a previously passed logical Id to use the auto-generated logical id again. |
@@ -2664,6 +2731,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@kikoda/cdktf-constructs.azure.Subnet.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@kikoda/cdktf-constructs.azure.Subnet.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addOverride` <a name="addOverride" id="@kikoda/cdktf-constructs.azure.Subnet.addOverride"></a>
 
@@ -3722,6 +3810,7 @@ Must be unique amongst siblings in the same scope
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@kikoda/cdktf-constructs.azure.SubnetBase.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@kikoda/cdktf-constructs.azure.SubnetBase.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.SubnetBase.addOverride">addOverride</a></code> | *No description.* |
 | <code><a href="#@kikoda/cdktf-constructs.azure.SubnetBase.overrideLogicalId">overrideLogicalId</a></code> | Overrides the auto-generated logical ID with a specific ID. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.SubnetBase.resetOverrideLogicalId">resetOverrideLogicalId</a></code> | Resets a previously passed logical Id to use the auto-generated logical id again. |
@@ -3768,6 +3857,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@kikoda/cdktf-constructs.azure.SubnetBase.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@kikoda/cdktf-constructs.azure.SubnetBase.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addOverride` <a name="addOverride" id="@kikoda/cdktf-constructs.azure.SubnetBase.addOverride"></a>
 
@@ -4823,6 +4933,7 @@ new azure.VNet(scope: Construct, id: string, props: VNetProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@kikoda/cdktf-constructs.azure.VNet.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@kikoda/cdktf-constructs.azure.VNet.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.VNet.selectSubnets">selectSubnets</a></code> | Returns a list of subnets matching the given selection criteria. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.VNet.addSubnet">addSubnet</a></code> | *No description.* |
 
@@ -4835,6 +4946,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@kikoda/cdktf-constructs.azure.VNet.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@kikoda/cdktf-constructs.azure.VNet.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `selectSubnets` <a name="selectSubnets" id="@kikoda/cdktf-constructs.azure.VNet.selectSubnets"></a>
 
@@ -5043,6 +5175,7 @@ dash `--`.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@kikoda/cdktf-constructs.azure.VNetBase.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@kikoda/cdktf-constructs.azure.VNetBase.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@kikoda/cdktf-constructs.azure.VNetBase.selectSubnets">selectSubnets</a></code> | Returns a list of subnets matching the given selection criteria. |
 
 ---
@@ -5054,6 +5187,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@kikoda/cdktf-constructs.azure.VNetBase.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@kikoda/cdktf-constructs.azure.VNetBase.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `selectSubnets` <a name="selectSubnets" id="@kikoda/cdktf-constructs.azure.VNetBase.selectSubnets"></a>
 
